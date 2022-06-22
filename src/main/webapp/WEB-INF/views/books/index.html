@@ -7,7 +7,7 @@
 <body>
 <h1>Страница со списком всех книг</h1>
 <div th:each="book : ${books}">
-    <a th:href="@{books/{id}/edit(id=${book.getId()})}"
+    <a th:href="@{books/{id}(id=${book.getId()})}"
        th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></a>
 </div>
 <br/>
