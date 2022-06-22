@@ -54,10 +54,21 @@ public class PeopleController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") int id) {
-        personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
             return "people/edit";
         personDAO.update(id, person);
+        return "redirect:/people";
+    }
+
+    @GetMapping("{id}")
+    public String show(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", personDAO.show(id));
+        return "people/show";
+    }
+
+    @DeleteMapping("{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDAO.delete(id);
         return "redirect:/people";
     }
 }

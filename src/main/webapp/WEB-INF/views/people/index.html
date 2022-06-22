@@ -7,7 +7,7 @@
 <body>
 <h1>Страница со списком всех людей</h1>
 <div th:each="person : ${people}">
-    <a th:href="@{people/{id}/edit(id=${person.getId()})}"
+    <a th:href="@{people/{id}(id=${person.getId()})}"
        th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}"></a>
 </div>
 <br/>
