@@ -24,12 +24,12 @@ public class PersonDAO {
     }
 
     public Optional<Person> show(String fullNAme) {
-        return jdbcTemplate.query("SELECT * FROM person WHERE full_name=?", new Object[] {fullNAme},
+        return jdbcTemplate.query("SELECT * FROM person WHERE full_name=?", new Object[]{fullNAme},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
 
     public Person show(int id) {
-        return jdbcTemplate.query("SELECT * FROM person WHERE id=?", new Object[] {id},
+        return jdbcTemplate.query("SELECT * FROM person WHERE id=?", new Object[]{id},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
     }
 
@@ -37,5 +37,10 @@ public class PersonDAO {
     public void save(Person person) {
         jdbcTemplate.update("INSERT INTO person(full_name, years_of_bitch) VALUES (?, ?)", person.getFullName(),
                 person.getYearOfBirth());
+    }
+
+    public void update(int id, Person person) {
+        jdbcTemplate.update("UPDATE person SET full_name=?, years_of_bitch=? WHERE id=?", person.getFullName(),
+                person.getYearOfBirth(), id);
     }
 }
