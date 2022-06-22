@@ -1,13 +1,22 @@
 package ru.safin.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Book {
 
     private int id;
 
+    @NotEmpty(message = "Введите название книги")
+    @Size(min = 2, max = 100, message = "Название книги должно быть от 2 до 100 символов")
     private String title;
 
+    @NotEmpty(message = "Введите имя автора")
+    @Size(min = 2, max = 100, message = "Имя автора должно быть от 2 до 100 символов")
     private String author;
 
+    @Min(value = 1400, message = "Год издания должен быть больше, чем 1400")
     private int year;
 
     public Book() {
