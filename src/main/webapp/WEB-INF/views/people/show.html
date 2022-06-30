@@ -8,6 +8,23 @@
 <h1>Страница человека</h1>
 <p th:object="${person}" th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}"></p>
 <br/>
+<div th:if="${books.isEmpty()}">Человек пока не взял ни одной книги</div>
+<br/>
+<div th:if="${!books.isEmpty()}">
+    <p>Книги:</p>
+    <table>
+        <tr>
+            <th>Автор</th>
+            <th>Название</th>
+            <th>Год выпуска</th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.getAuthor()}"></td>
+            <td th:text="${book.getTitle()}"></td>
+            <td th:text="${book.getYear()}"></td>
+        </tr>
+    </table>
+</div>
 <form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
     <input type="submit" value="Редактировать"/>
 </form>
