@@ -22,8 +22,8 @@
     <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
         <label for="person">Выберите человека</label>
         <select th:object="${person}" th:field="*{id}" id="person">
-            <option th:each="person : ${people}" th:value="${person.getId()}"
-                    th:text="${person.getFullName()}"></option>
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}">
+            </option>
         </select>
         <input type="submit" value="Назначить книгу">
     </form>
@@ -37,5 +37,8 @@
 <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
     <input type="submit" value="Удалить"/>
 </form>
+<a href="/people">Перейти к списку пользователей</a>
+<br/>
+<a href="/books">Перейти к списку книг</a>
 </body>
 </html>
